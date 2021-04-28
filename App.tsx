@@ -1,16 +1,12 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
+import {StackNavigator} from './src/navigation/StackNavigator';
 
 const App = () => {
   return (
     <NavigationContainer>
-      <SafeAreaView>
-        <View>
-          <Text>Hola cara de bola</Text>
-        </View>
-      </SafeAreaView>
+      <StackNavigator />
     </NavigationContainer>
   );
 };
