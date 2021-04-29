@@ -23,4 +23,13 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
+  avatarContainer: {
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  avatar: {
+    width: 80,
+    height: 80,
+    borderRadius: 100,
+  },
 });
