@@ -7,7 +7,13 @@ import {
 } from '@react-navigation/drawer';
 import {SettingsScreen} from '../screens/SettingsScreen';
 import {StackNavigator} from './StackNavigator';
-import {Image, Text, useWindowDimensions, View} from 'react-native';
+import {
+  Image,
+  Text,
+  TouchableOpacity,
+  useWindowDimensions,
+  View,
+} from 'react-native';
 import {styles} from '../../theme/appTheme';
 
 const Drawer = createDrawerNavigator();
@@ -19,15 +25,15 @@ export const DrawerNavigator = () => {
     <Drawer.Navigator
       drawerType={width >= 768 ? 'permanent' : 'front'}
       drawerContent={props => <DrawerContent {...props} />}>
-      <Drawer.Screen name="Home" component={StackNavigator} />
-      <Drawer.Screen name="Settings" component={SettingsScreen} />
+      <Drawer.Screen name="HomeScreen" component={StackNavigator} />
+      <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
     </Drawer.Navigator>
   );
 };
 
-const DrawerContent = (
-  props: DrawerContentComponentProps<DrawerContentOptions>,
-) => {
+const DrawerContent = ({
+  navigation,
+}: DrawerContentComponentProps<DrawerContentOptions>) => {
   return (
     <DrawerContentScrollView>
       <View style={styles.avatarContainer}>
@@ -38,6 +44,18 @@ const DrawerContent = (
               'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
           }}
         />
+      </View>
+      <View style={styles.menuConatainer}>
+        <TouchableOpacity
+          style={styles.menuButton}
+          onPress={() => navigation.navigate('HomeScreen')}>
+          <Text style={styles.menuText}>Navegacion</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.menuButton}
+          onPress={() => navigation.navigate('SettingsScreen')}>
+          <Text style={styles.menuText}>Ajustes</Text>
+        </TouchableOpacity>
       </View>
     </DrawerContentScrollView>
   );
