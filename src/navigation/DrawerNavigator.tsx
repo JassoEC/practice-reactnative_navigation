@@ -5,6 +5,7 @@ import {
   DrawerContentOptions,
   DrawerContentScrollView,
 } from '@react-navigation/drawer';
+import Icon from 'react-native-vector-icons/Ionicons';
 import {SettingsScreen} from '../screens/SettingsScreen';
 import {
   Image,
@@ -49,11 +50,13 @@ const DrawerContent = ({
         <TouchableOpacity
           style={styles.menuButton}
           onPress={() => navigation.navigate('TabsScreen')}>
+          <Icon name="navigate-outline" size={20} />
           <Text style={styles.menuText}>Navegacion</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.menuButton}
           onPress={() => navigation.navigate('SettingsScreen')}>
+          <Icon name="settings-outline" size={20} />
           <Text style={styles.menuText}>Ajustes</Text>
         </TouchableOpacity>
       </View>

@@ -37,9 +37,18 @@ export const styles = StyleSheet.create({
     marginHorizontal: 30,
   },
   menuButton: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
     marginVertical: 10,
   },
   menuText: {
+    marginLeft: 25,
     fontSize: 20,
+  },
+  toogleButton: {
+    display: 'flex',
+    alignItems: 'center',
+    marginLeft: 10,
   },
 });

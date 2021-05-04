@@ -1,10 +1,11 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import {Platform} from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 import {Tab1Screen} from '../screens/Tab1Screen';
-import {Tab2Screen} from '../screens/Tab2Screen';
 import {StackNavigator} from './StackNavigator';
-import {Platform, Text} from 'react-native';
+import {TopTabNavigator} from './TopTabNavigator';
 
 export const Tabs = () => {
   return Platform.OS === 'ios' ? <TabsIOS /> : <TabsAndroid />;
@@ -25,23 +26,23 @@ const TabsAndroid = () => {
 
           switch (route.name) {
             case 'Tab1Screen':
-              iconName = 'T1';
+              iconName = 'american-football-outline';
               break;
             case 'Tab2Screen':
-              iconName = 'T2';
+              iconName = 'attach-outline';
               break;
             case 'StackScreen':
-              iconName = 'St';
+              iconName = 'barbell-outline';
               break;
           }
-          return <Text style={{color}}>{iconName}</Text>;
+          return <Icon name={iconName} size={20} style={{color}} />;
         },
       })}>
       <BottomTabAndroid.Screen name="Tab1Screen" component={Tab1Screen} />
       <BottomTabAndroid.Screen
         name="Tab2Screen"
         options={{title: 'Tabs 2'}}
-        component={Tab2Screen}
+        component={TopTabNavigator}
       />
       <BottomTabAndroid.Screen
         name="StackScreen"
@@ -74,16 +75,17 @@ const TabsIOS = () => {
 
           switch (route.name) {
             case 'Tab1Screen':
-              iconName = 'T1';
+              iconName = 'american-football-outline';
               break;
             case 'Tab2Screen':
-              iconName = 'T2';
+              iconName = 'attach-outline';
               break;
             case 'StackScreen':
-              iconName = 'St';
+              iconName = 'barbell-outline';
               break;
           }
-          return <Text style={{color}}>{iconName}</Text>;
+
+          return <Icon name={iconName} size={20} style={{color}} />;
         },
       })}>
       <BottomTabIOS.Screen
@@ -97,7 +99,7 @@ const TabsIOS = () => {
       <BottomTabIOS.Screen
         name="Tab2Screen"
         options={{title: 'Tabs 2'}}
-        component={Tab2Screen}
+        component={TopTabNavigator}
       />
       <BottomTabIOS.Screen
         name="StackScreen"

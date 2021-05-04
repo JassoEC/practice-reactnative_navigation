@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 /* import {StackScreenProps} from '@react-navigation/stack'; */
+import Icon from 'react-native-vector-icons/Ionicons';
 import {Button, Text, View, TouchableOpacity} from 'react-native';
 import {DrawerScreenProps} from '@react-navigation/drawer';
 import {styles} from '../../theme/appTheme';
@@ -11,9 +12,11 @@ export const Page1Screen = ({navigation}: Props) => {
   useEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
-        <Button title="Menu" onPress={() => navigation.toggleDrawer()}>
-          <Text>Hola Mundo</Text>
-        </Button>
+        <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+          <View style={styles.toogleButton}>
+            <Icon name="menu-outline" size={20} />
+          </View>
+        </TouchableOpacity>
       ),
     });
   }, []);
@@ -36,6 +39,7 @@ export const Page1Screen = ({navigation}: Props) => {
               name: 'Michelle',
             })
           }>
+          <Icon name="woman-outline" size={30} color="white" />
           <Text style={styles.textButton}>Michelle</Text>
         </TouchableOpacity>
 
@@ -47,6 +51,7 @@ export const Page1Screen = ({navigation}: Props) => {
               name: 'Emanuel',
             })
           }>
+          <Icon name="man-outline" size={30} color="white" />
           <Text style={styles.textButton}>Emanuel</Text>
         </TouchableOpacity>
       </View>
