@@ -1,15 +1,61 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {Tab1Screen} from '../screens/Tab1Screen';
 import {Tab2Screen} from '../screens/Tab2Screen';
 import {StackNavigator} from './StackNavigator';
-import {Text} from 'react-native';
-
-const Tab = createBottomTabNavigator();
+import {Platform, Text} from 'react-native';
 
 export const Tabs = () => {
+  return Platform.OS === 'ios' ? <TabsIOS /> : <TabsAndroid />;
+};
+
+const BottomTabAndroid = createMaterialBottomTabNavigator();
+
+const TabsAndroid = () => {
   return (
-    <Tab.Navigator
+    <BottomTabAndroid.Navigator
+      sceneAnimationEnabled={true}
+      barStyle={{
+        backgroundColor: '#5856D6',
+      }}
+      screenOptions={({route}) => ({
+        tabBarIcon: ({color, focused}) => {
+          let iconName: string = '';
+
+          switch (route.name) {
+            case 'Tab1Screen':
+              iconName = 'T1';
+              break;
+            case 'Tab2Screen':
+              iconName = 'T2';
+              break;
+            case 'StackScreen':
+              iconName = 'St';
+              break;
+          }
+          return <Text style={{color}}>{iconName}</Text>;
+        },
+      })}>
+      <BottomTabAndroid.Screen name="Tab1Screen" component={Tab1Screen} />
+      <BottomTabAndroid.Screen
+        name="Tab2Screen"
+        options={{title: 'Tabs 2'}}
+        component={Tab2Screen}
+      />
+      <BottomTabAndroid.Screen
+        name="StackScreen"
+        options={{title: 'Stacks'}}
+        component={StackNavigator}
+      />
+    </BottomTabAndroid.Navigator>
+  );
+};
+
+const BottomTabIOS = createBottomTabNavigator();
+const TabsIOS = () => {
+  return (
+    <BottomTabIOS.Navigator
       sceneContainerStyle={{
         backgroundColor: 'white',
       }}
@@ -40,7 +86,7 @@ export const Tabs = () => {
           return <Text style={{color}}>{iconName}</Text>;
         },
       })}>
-      <Tab.Screen
+      <BottomTabIOS.Screen
         name="Tab1Screen"
         /* options={{
           title: 'Tabs 1',
@@ -48,16 +94,16 @@ export const Tabs = () => {
         }} */
         component={Tab1Screen}
       />
-      <Tab.Screen
+      <BottomTabIOS.Screen
         name="Tab2Screen"
         options={{title: 'Tabs 2'}}
         component={Tab2Screen}
       />
-      <Tab.Screen
+      <BottomTabIOS.Screen
         name="StackScreen"
         options={{title: 'Stacks'}}
         component={StackNavigator}
       />
-    </Tab.Navigator>
+    </BottomTabIOS.Navigator>
   );
 };
